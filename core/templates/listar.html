@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+<div class="row">
+    <h1>Produtos - CRUD Class Based View!</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Ação</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for produto in produtos %}
+        <tr>
+            <td scope="row">{{ produto.id }}</td>
+            <td scope="row">{{ produto.nome }}</td>
+            <td scope="row">R$ {{ produto.preco|intcomma }}</td>
+            <td scope="row">
+                <a href="{% url 'atualizar_produto' produto.pk %}" class="btn btn-warning">Editar</a>
+                <a href="{% url 'deletar_produto' produto.pk %}" class="btn btn-danger">Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
